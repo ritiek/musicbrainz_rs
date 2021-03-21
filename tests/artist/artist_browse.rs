@@ -8,6 +8,7 @@ use std::{thread, time};
 
 #[test]
 fn should_browse_artist_by_release_groups() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let artistss_on_in_rainbows_rg = Artist::browse()
         .by(
             artist::Browse::ReleaseGroup,
@@ -22,12 +23,11 @@ fn should_browse_artist_by_release_groups() {
     assert_eq!(artistss_on_in_rainbows_rg.count, 1);
     assert_eq!(artistss_on_in_rainbows_rg.offset, 0);
     assert!(!artistss_on_in_rainbows_rg.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_artist_by_release() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let artists_on_in_utero_release = Artist::browse()
         .by(
             artist::Browse::Release,
@@ -42,12 +42,11 @@ fn should_browse_artist_by_release() {
     assert_eq!(artists_on_in_utero_release.count, 1);
     assert_eq!(artists_on_in_utero_release.offset, 0);
     assert!(!artists_on_in_utero_release.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_artist_by_area() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let artistss_in_aberdeen_area = Artist::browse()
         .by(artist::Browse::Area, "a640b45c-c173-49b1-8030-973603e895b5")
         .execute();
@@ -59,12 +58,11 @@ fn should_browse_artist_by_area() {
     assert!(artistss_in_aberdeen_area.count > 0);
     assert_eq!(artistss_in_aberdeen_area.offset, 0);
     assert!(!artistss_in_aberdeen_area.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_artist_by_work() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let artists_on_hotel_california = Artist::browse()
         .by(artist::Browse::Work, "22457dc0-ecbf-38f5-9056-11c858530a50")
         .execute();
@@ -74,12 +72,11 @@ fn should_browse_artist_by_work() {
     assert!(artists_on_hotel_california.count > 1);
     assert_eq!(artists_on_hotel_california.offset, 0);
     assert!(!artists_on_hotel_california.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_artist_by_recording() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let artists_on_polly = Artist::browse()
         .by(
             artist::Browse::Recording,
@@ -92,6 +89,4 @@ fn should_browse_artist_by_recording() {
     assert!(artists_on_polly.count == 1);
     assert_eq!(artists_on_polly.offset, 0);
     assert!(!artists_on_polly.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

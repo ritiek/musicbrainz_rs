@@ -6,6 +6,7 @@ use std::{thread, time};
 
 #[test]
 fn should_get_label_releases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let ninja_tune = Label::fetch()
         .id("dc940013-b8a8-4362-a465-291026c04b42")
         .include(label::Include::Releases)
@@ -17,12 +18,11 @@ fn should_get_label_releases() {
         .unwrap()
         .iter()
         .any(|release| release.title == "The Final Corporate Colonization of the Unconscious"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_label_aliases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let motown = Label::fetch()
         .id("8e479e57-ef44-490c-b75d-cd28df89bf1b")
         .include(label::Include::Aliases)
@@ -31,12 +31,11 @@ fn should_get_label_aliases() {
     let aliases = motown.unwrap().aliases;
 
     assert!(aliases.unwrap().iter().any(|alias| alias.name == "Motown"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_label_tags() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let ninja_tune = Label::fetch()
         .id("dc940013-b8a8-4362-a465-291026c04b42")
         .include(label::Include::Tags)
@@ -48,12 +47,11 @@ fn should_get_label_tags() {
         .unwrap()
         .iter()
         .any(|tag| tag.name == "independent"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_label_rating() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let ninja_tune = Label::fetch()
         .id("dc940013-b8a8-4362-a465-291026c04b42")
         .include(label::Include::Rating)
@@ -61,12 +59,11 @@ fn should_get_label_rating() {
         .unwrap();
 
     assert!(ninja_tune.rating.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_label_genres() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let ninja_tune = Label::fetch()
         .id("dc940013-b8a8-4362-a465-291026c04b42")
         .include(label::Include::Genres)
@@ -74,12 +71,11 @@ fn should_get_label_genres() {
         .unwrap();
 
     assert!(ninja_tune.genres.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_label_annotation() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let tokuma_japan_communications = Label::fetch()
         .id("040439f9-578b-45b6-b07b-d6c97e544859")
         .include(label::Include::Annotation)
@@ -87,6 +83,4 @@ fn should_get_label_annotation() {
         .unwrap();
 
     assert!(tokuma_japan_communications.annotation.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

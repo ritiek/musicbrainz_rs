@@ -7,6 +7,7 @@ use std::{thread, time};
 
 #[test]
 fn should_search_artist() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let query = Artist::query_builder()
         .name("Nirvana")
         .and()
@@ -16,6 +17,4 @@ fn should_search_artist() {
     let result = Artist::search(query).execute().unwrap();
 
     assert!(!result.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

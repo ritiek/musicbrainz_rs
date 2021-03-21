@@ -51,6 +51,7 @@ pub fn set_user_agent(user_agent: &'static str) {
         .expect("Unable to set user agent");
 }
 
+pub const DEFAULT_USER_AGENT: &str = concat!("musicbrainz_rs/", env!("CARGO_PKG_VERSION"));
 pub const BASE_URL: &str = "http://musicbrainz.org/ws/2";
 pub const FMT_JSON: &str = "?fmt=json";
 pub const PARAM_INC: &str = "&inc=";

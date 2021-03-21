@@ -22,6 +22,7 @@ use std::{thread, time};
 
 #[test]
 fn should_get_artist_by_id() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let nirvana = Artist::fetch()
         .id("5b11f4ce-a62d-471e-81fc-a69a8278c7da")
         .execute();
@@ -81,12 +82,11 @@ fn should_get_artist_by_id() {
             annotation: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_recording_by_id() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let polly = Recording::fetch()
         .id("af40d6b8-58e8-4ca5-9db8-d4fca0b899e2")
         .execute();
@@ -109,11 +109,11 @@ fn should_get_recording_by_id() {
             annotation: None,
         }
     );
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_group_by_id() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let in_utero = ReleaseGroup::fetch()
         .id("2a0981fb-9593-3019-864b-ce934d97a16e")
         .execute();
@@ -138,12 +138,11 @@ fn should_get_release_group_by_id() {
             annotation: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let in_utero = Release::fetch()
         .id("18d4e9b4-9247-4b44-914a-8ddec3502103")
         .execute();
@@ -171,12 +170,11 @@ fn should_get_release() {
             annotation: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_work_by_id() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let hotel_california = Work::fetch()
         .id("22457dc0-ecbf-38f5-9056-11c858530a50")
         .execute();
@@ -198,12 +196,11 @@ fn should_get_work_by_id() {
             annotation: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_label_by_id() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let ninja_tune = Label::fetch()
         .id("dc940013-b8a8-4362-a465-291026c04b42")
         .execute();
@@ -227,12 +224,11 @@ fn should_get_label_by_id() {
             annotation: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_area_by_id() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let aberdeen = Area::fetch()
         .id("a640b45c-c173-49b1-8030-973603e895b5")
         .execute();
@@ -258,12 +254,11 @@ fn should_get_area_by_id() {
             })
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_event_by_id() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let dour_festival_1989 = Event::fetch()
         .id("73df2f48-383b-4930-bad3-05ba938be578")
         .execute();
@@ -295,6 +290,7 @@ fn should_get_event_by_id() {
 
 #[test]
 fn should_get_instrument() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let mandoline = Instrument::fetch()
         .id("37fa9bb5-d5d7-4b0f-aa4d-531339ba9c32")
         .execute();
@@ -314,13 +310,12 @@ fn should_get_instrument() {
             annotation: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 // TODO : waiting for https://github.com/metabrainz/musicbrainz-server/pull/1223 to be released
 // #[test]
 fn should_get_place() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let blue_note_record = Place::fetch()
         .id("327c29c6-da63-4dc9-a117-1917ee691ce4")
         .execute();
@@ -363,12 +358,11 @@ fn should_get_place() {
             annotation: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_series() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let la_chanson_du_dimanche = Series::fetch()
         .id("814fb4d5-327f-4e37-8784-f8a707e5f97c")
         .execute();
@@ -387,12 +381,11 @@ fn should_get_series() {
             annotation: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_url() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let svinkels_dot_com = Url::fetch()
         .id("9237f6da-fec6-4b8a-9d52-c7c18e0e2630")
         .execute();
@@ -405,6 +398,4 @@ fn should_get_url() {
             tags: None,
         }
     );
-
-    thread::sleep(time::Duration::from_secs(1));
 }

@@ -8,6 +8,7 @@ use std::{thread, time};
 
 #[test]
 fn should_browse_release_group_by_artist() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let release_groups_by_svinkels = ReleaseGroup::browse()
         .by(
             release_group::Browse::Artist,
@@ -22,12 +23,11 @@ fn should_browse_release_group_by_artist() {
     assert!(release_groups_by_svinkels.count > 1);
     assert_eq!(release_groups_by_svinkels.offset, 0);
     assert!(!release_groups_by_svinkels.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_release_group_by_release() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let release_groups_of_we_want_miles = ReleaseGroup::browse()
         .by(
             release_group::Browse::Release,
@@ -42,6 +42,4 @@ fn should_browse_release_group_by_release() {
     assert!(release_groups_of_we_want_miles.count > 0);
     assert_eq!(release_groups_of_we_want_miles.offset, 0);
     assert!(!release_groups_of_we_want_miles.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

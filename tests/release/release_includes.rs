@@ -7,6 +7,7 @@ use std::{thread, time};
 
 #[test]
 fn should_get_release_release_groups() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let justice_cross = Release::fetch()
         .id("4642ee19-7790-3c8d-ab5e-d133de942db6")
         .include(release::Include::ReleaseGroup)
@@ -14,12 +15,11 @@ fn should_get_release_release_groups() {
         .unwrap();
 
     assert_eq!(justice_cross.release_group.unwrap().title, "✝");
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_media() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let justice_cross = Release::fetch()
         .id("4642ee19-7790-3c8d-ab5e-d133de942db6")
         .include(release::Include::Recordings)
@@ -31,12 +31,11 @@ fn should_get_release_media() {
         .unwrap()
         .iter()
         .any(|media| media.format.as_ref().unwrap() == "CD"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_recordings() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let justice_cross = Release::fetch()
         .id("4642ee19-7790-3c8d-ab5e-d133de942db6")
         .include(release::Include::Recordings)
@@ -52,12 +51,11 @@ fn should_get_release_recordings() {
         .unwrap()
         .iter()
         .any(|track| track.title == "D.A.N.C.E."));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_label() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let justice_cross = Release::fetch()
         .id("4642ee19-7790-3c8d-ab5e-d133de942db6")
         .include(release::Include::Labels)
@@ -69,12 +67,11 @@ fn should_get_release_label() {
         .unwrap()
         .iter()
         .any(|label_info| label_info.label.name == "Ed Banger Records"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_tags() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let l_ecole_du_micro_d_argent = Release::fetch()
         .id("cba0035e-d8c9-4390-8569-02bdadaf87d3")
         .include(release::Include::Tags)
@@ -86,12 +83,11 @@ fn should_get_release_tags() {
         .unwrap()
         .iter()
         .any(|tag| tag.name == "hip hop"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_aliases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let l_ecole_du_micro_d_argent = Release::fetch()
         .id("cba0035e-d8c9-4390-8569-02bdadaf87d3")
         .include(release::Include::Aliases)
@@ -99,12 +95,11 @@ fn should_get_release_aliases() {
         .unwrap();
 
     assert!(l_ecole_du_micro_d_argent.aliases.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_genres() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let l_ecole_du_micro_d_argent = Release::fetch()
         .id("cba0035e-d8c9-4390-8569-02bdadaf87d3")
         .include(release::Include::Genres)
@@ -112,12 +107,11 @@ fn should_get_release_genres() {
         .unwrap();
 
     assert!(l_ecole_du_micro_d_argent.genres.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_annotation() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let pieds_nus_sur_la_braise = Release::fetch()
         .id("bdb24cb5-404b-4f60-bba4-7b730325ae47")
         .include(release::Include::Annotation)
@@ -125,6 +119,4 @@ fn should_get_release_annotation() {
         .unwrap();
 
     assert!(pieds_nus_sur_la_braise.annotation.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

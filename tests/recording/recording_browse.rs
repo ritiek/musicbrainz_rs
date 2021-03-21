@@ -8,6 +8,7 @@ use std::{thread, time};
 
 #[test]
 fn should_browse_recording_by_artist() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let recording_by_svinkels = Recording::browse()
         .by(
             recording::Browse::Artist,
@@ -22,12 +23,11 @@ fn should_browse_recording_by_artist() {
     assert!(recording_by_svinkels.count > 1);
     assert_eq!(recording_by_svinkels.offset, 0);
     assert!(!recording_by_svinkels.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_recording_work() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let la_javanaise_recordings = Recording::browse()
         .by(
             recording::Browse::Work,
@@ -42,12 +42,11 @@ fn should_browse_recording_work() {
     assert!(la_javanaise_recordings.count > 1);
     assert_eq!(la_javanaise_recordings.offset, 0);
     assert!(!la_javanaise_recordings.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_recording_by_release() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let recording_on_hooker_n_heat = Recording::browse()
         .by(
             recording::Browse::Release,
@@ -62,6 +61,4 @@ fn should_browse_recording_by_release() {
     assert!(recording_on_hooker_n_heat.count > 1);
     assert_eq!(recording_on_hooker_n_heat.offset, 0);
     assert!(!recording_on_hooker_n_heat.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

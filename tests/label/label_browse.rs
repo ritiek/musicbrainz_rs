@@ -8,6 +8,7 @@ use std::{thread, time};
 
 #[test]
 fn should_browse_label_by_area() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let labels_in_paris = Label::browse()
         .by(label::Browse::Area, "dc10c22b-e510-4006-8b7f-fecb4f36436e")
         .execute();
@@ -19,12 +20,11 @@ fn should_browse_label_by_area() {
     assert!(labels_in_paris.count > 1);
     assert_eq!(labels_in_paris.offset, 0);
     assert!(!labels_in_paris.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_label_by_release() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let label_of_justice_cross_release = Label::browse()
         .by(
             label::Browse::Release,
@@ -39,6 +39,4 @@ fn should_browse_label_by_release() {
     assert!(label_of_justice_cross_release.count > 1);
     assert_eq!(label_of_justice_cross_release.offset, 0);
     assert!(!label_of_justice_cross_release.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

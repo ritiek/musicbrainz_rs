@@ -8,6 +8,7 @@ use std::{thread, time};
 
 #[test]
 fn should_get_artist_releases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::Releases)
@@ -19,12 +20,11 @@ fn should_get_artist_releases() {
     assert!(releases
         .iter()
         .any(|release| release.title == "Boogie Chillen’ / Sally Mae"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_works() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::Works)
@@ -36,12 +36,11 @@ fn should_get_artist_works() {
     assert!(works
         .iter()
         .any(|work| work.title == "Baby Please Don't Go"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_release_groups() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::ReleaseGroups)
@@ -54,12 +53,11 @@ fn should_get_artist_release_groups() {
     assert!(release_groups
         .iter()
         .any(|group| group.title == "Travelin’"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_recordings() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::Recordings)
@@ -71,12 +69,11 @@ fn should_get_artist_recordings() {
     assert!(recordings
         .iter()
         .any(|recording| recording.title == "A Little Bit Higher"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_aliases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::Aliases)
@@ -93,6 +90,7 @@ fn should_get_artist_aliases() {
 
 #[test]
 fn should_get_artist_artist_relations() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::ArtistRelations)
@@ -106,12 +104,11 @@ fn should_get_artist_artist_relations() {
     assert!(relations
         .iter()
         .any(|rel| rel.relation_type == "main performer"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_artist_releases_with_disc_ids() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let nirvana = Artist::fetch()
         .id("5b11f4ce-a62d-471e-81fc-a69a8278c7da")
         .include(artist::Include::ReleasesWithDiscIds)
@@ -123,12 +120,11 @@ fn should_get_artist_artist_releases_with_disc_ids() {
     assert!(releases_with_disc_ids
         .iter()
         .any(|release| release.title == "Smells Like Teen Spirit"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_tags() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::Tags)
@@ -140,12 +136,11 @@ fn should_get_artist_tags() {
         .unwrap()
         .iter()
         .any(|tag| tag.name == "chicago blues"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_rating() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::Rating)
@@ -153,12 +148,11 @@ fn should_get_artist_rating() {
         .unwrap();
 
     assert!(john_lee_hooker.rating.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_genres() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let john_lee_hooker = Artist::fetch()
         .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
         .include(artist::Include::Genres)
@@ -170,12 +164,11 @@ fn should_get_artist_genres() {
         .unwrap()
         .iter()
         .any(|genre| genre.name == "blues"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_artist_annotation() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let franz_joseph_haydn = Artist::fetch()
         .id("c130b0fb-5dce-449d-9f40-1437f889f7fe")
         .include(artist::Include::Annotation)
@@ -183,6 +176,4 @@ fn should_get_artist_annotation() {
         .unwrap();
 
     assert!(franz_joseph_haydn.annotation.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

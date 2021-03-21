@@ -6,6 +6,7 @@ use std::{thread, time};
 
 #[test]
 fn should_get_recording_artists() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let association_de_gens_normal = Recording::fetch()
         .id("f5f10cee-5d84-41d0-805d-3503872c151d")
         .include(recording::Include::Artists)
@@ -15,12 +16,11 @@ fn should_get_recording_artists() {
 
     assert!(artist_credit.iter().any(|credit| credit.name == "TTC"));
     assert!(artist_credit.iter().any(|credit| credit.name == "Svinkels"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_recording_releases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let you_talk_too_much = Recording::fetch()
         .id("de552ba4-572c-4c59-b2a9-0508619696ac")
         .include(recording::Include::Releases)
@@ -32,12 +32,11 @@ fn should_get_recording_releases() {
         .unwrap()
         .iter()
         .any(|release| release.title == "Hooker ’n Heat"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_recording_aliases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let you_talk_too_much = Recording::fetch()
         .id("de552ba4-572c-4c59-b2a9-0508619696ac")
         .include(recording::Include::Aliases)
@@ -46,12 +45,11 @@ fn should_get_recording_aliases() {
     let aliases = you_talk_too_much.unwrap().aliases;
 
     assert!(aliases.is_some()); // FIXME: didn't find a recording containing actual aliases (yet)
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_recording_tags() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let you_talk_too_much = Recording::fetch()
         .id("de552ba4-572c-4c59-b2a9-0508619696ac")
         .include(recording::Include::Tags)
@@ -59,12 +57,11 @@ fn should_get_recording_tags() {
         .unwrap();
 
     assert!(you_talk_too_much.tags.is_some()); // FIXME: didn't find a recording containing actual aliases (yet)
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_recording_rating() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let you_talk_too_much = Recording::fetch()
         .id("de552ba4-572c-4c59-b2a9-0508619696ac")
         .include(recording::Include::Rating)
@@ -72,12 +69,11 @@ fn should_get_recording_rating() {
         .unwrap();
 
     assert!(you_talk_too_much.rating.is_some()); // FIXME: didn't find a recording containing actual aliases (yet)
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_recording_genres() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let you_talk_too_much = Recording::fetch()
         .id("de552ba4-572c-4c59-b2a9-0508619696ac")
         .include(recording::Include::Genres)
@@ -85,12 +81,11 @@ fn should_get_recording_genres() {
         .unwrap();
 
     assert!(you_talk_too_much.genres.is_some()); // FIXME: didn't find a recording containing actual aliases (yet)
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_recording_annotation() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let isolina = Recording::fetch()
         .id("2edf7653-2287-4408-8e7a-20e001a60847")
         .include(recording::Include::Annotation)
@@ -98,6 +93,4 @@ fn should_get_recording_annotation() {
         .unwrap();
 
     assert!(isolina.annotation.is_some()); // FIXME: didn't find a recording containing actual aliases (yet)
-
-    thread::sleep(time::Duration::from_secs(1));
 }

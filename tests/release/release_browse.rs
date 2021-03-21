@@ -8,6 +8,8 @@ use std::{thread, time};
 
 #[test]
 fn should_browse_release_by_artist() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let releases_by_svinkels = Release::browse()
         .by(
             release::Browse::Artist,
@@ -22,12 +24,11 @@ fn should_browse_release_by_artist() {
     assert!(releases_by_svinkels.count > 1);
     assert_eq!(releases_by_svinkels.offset, 0);
     assert!(!releases_by_svinkels.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_release_by_area() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let releases_france = Release::browse()
         .by(
             release::Browse::Area,
@@ -42,12 +43,11 @@ fn should_browse_release_by_area() {
     assert!(releases_france.count > 1);
     assert_eq!(releases_france.offset, 0);
     assert!(!releases_france.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_release_by_label() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let ninjatune_releases = Release::browse()
         .by(
             release::Browse::Label,
@@ -62,12 +62,11 @@ fn should_browse_release_by_label() {
     assert!(ninjatune_releases.count > 1);
     assert_eq!(ninjatune_releases.offset, 0);
     assert!(!ninjatune_releases.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_release_by_recording() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let release_of_l_ecole_du_micro_d_argent = Release::browse()
         .by(
             release::Browse::Recording,
@@ -82,12 +81,11 @@ fn should_browse_release_by_recording() {
     assert!(release_of_l_ecole_du_micro_d_argent.count > 1);
     assert_eq!(release_of_l_ecole_du_micro_d_argent.offset, 0);
     assert!(!release_of_l_ecole_du_micro_d_argent.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_release_by_track() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let release_with_phantom_by_justice = Release::browse()
         .by(
             release::Browse::Track,
@@ -102,12 +100,11 @@ fn should_browse_release_by_track() {
     assert!(release_with_phantom_by_justice.count > 0);
     assert_eq!(release_with_phantom_by_justice.offset, 0);
     assert!(!release_with_phantom_by_justice.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_release_by_track_artist() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let release_featuring_akhenaton = Release::browse()
         .by(
             release::Browse::TrackArtist,
@@ -122,12 +119,11 @@ fn should_browse_release_by_track_artist() {
     assert!(release_featuring_akhenaton.count > 1);
     assert_eq!(release_featuring_akhenaton.offset, 0);
     assert!(!release_featuring_akhenaton.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_browse_release_by_release_group() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let neil_young_harvest_releases = Release::browse()
         .by(
             release::Browse::ReleaseGroup,
@@ -142,6 +138,4 @@ fn should_browse_release_by_release_group() {
     assert!(neil_young_harvest_releases.count > 1);
     assert_eq!(neil_young_harvest_releases.offset, 0);
     assert!(!neil_young_harvest_releases.entities.is_empty());
-
-    thread::sleep(time::Duration::from_secs(1));
 }

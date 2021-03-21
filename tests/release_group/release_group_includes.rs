@@ -5,6 +5,7 @@ use std::{thread, time};
 
 #[test]
 fn should_get_release_group_artists() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let harvest = ReleaseGroup::fetch()
         .id("b25419cf-71bf-3a54-8cd4-2161c61056a0")
         .include(release_group::Include::Artists)
@@ -16,12 +17,11 @@ fn should_get_release_group_artists() {
         .unwrap()
         .iter()
         .any(|credit| credit.artist.name == "Neil Young"));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_group_releases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let harvest = ReleaseGroup::fetch()
         .id("b25419cf-71bf-3a54-8cd4-2161c61056a0")
         .include(release_group::Include::Releases)
@@ -33,12 +33,11 @@ fn should_get_release_group_releases() {
         .unwrap()
         .iter()
         .any(|release| release.title == "Harvest" && release.country == Some("CA".to_string())));
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_group_tags() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let in_utero = ReleaseGroup::fetch()
         .id("2a0981fb-9593-3019-864b-ce934d97a16e")
         .include(release_group::Include::Tags)
@@ -50,11 +49,11 @@ fn should_get_release_group_tags() {
         .unwrap()
         .iter()
         .any(|tag| tag.name == "rock_grunge"));
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_group_aliases() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let in_utero = ReleaseGroup::fetch()
         .id("2a0981fb-9593-3019-864b-ce934d97a16e")
         .include(release_group::Include::Aliases)
@@ -62,12 +61,11 @@ fn should_get_release_group_aliases() {
         .unwrap();
 
     assert!(in_utero.aliases.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_group_rating() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let in_utero = ReleaseGroup::fetch()
         .id("2a0981fb-9593-3019-864b-ce934d97a16e")
         .include(release_group::Include::Rating)
@@ -75,12 +73,11 @@ fn should_get_release_group_rating() {
         .unwrap();
 
     assert!(in_utero.rating.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_group_genres() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let in_utero = ReleaseGroup::fetch()
         .id("2a0981fb-9593-3019-864b-ce934d97a16e")
         .include(release_group::Include::Genres)
@@ -88,12 +85,11 @@ fn should_get_release_group_genres() {
         .unwrap();
 
     assert!(in_utero.genres.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
 
 #[test]
 fn should_get_release_group_annotation() {
+    musicbrainz_rs::config::set_user_agent(musicbrainz_rs::config::DEFAULT_USER_AGENT);
     let minnesoda = ReleaseGroup::fetch()
         .id("100d2ce1-8ba4-43eb-afbe-93ca21867e16")
         .include(release_group::Include::Annotation)
@@ -101,6 +97,4 @@ fn should_get_release_group_annotation() {
         .unwrap();
 
     assert!(minnesoda.annotation.is_some());
-
-    thread::sleep(time::Duration::from_secs(1));
 }
