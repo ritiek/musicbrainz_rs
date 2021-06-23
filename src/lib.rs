@@ -184,7 +184,10 @@ where
     {
         self.0.path.push_str(FMT_JSON);
         self.include_to_path();
-        HTTP_CLIENT.get(&self.0.path).send()?.json()
+        println!("{}", &self.0.path);
+        let mut response = HTTP_CLIENT.get(&self.0.path).send()?;
+        let json = response.json();
+        json
     }
 
     fn include_to_path(&mut self) {

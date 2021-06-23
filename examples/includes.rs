@@ -1,21 +1,22 @@
 extern crate musicbrainz_rs;
 
-use musicbrainz_rs::entity::label::*;
+use musicbrainz_rs::entity::artist::*;
 use musicbrainz_rs::prelude::*;
 
 fn main() {
-    let ninja_tune = Label::fetch()
-        .id("dc940013-b8a8-4362-a465-291026c04b42")
-        .with_tags()
-        .with_ratings()
+    let john_lee_hooker = Artist::fetch()
+        .id("b0122194-c49a-46a1-ade7-84d1d76bd8e9")
+        .with_releases()
+        .with_works()
+        .with_artist_relations()
+        .with_event_relations()
         .execute()
         .unwrap();
 
-    assert!(ninja_tune
-        .tags
-        .unwrap()
-        .iter()
-        .any(|tag| tag.name == "independent"));
+    let relations = john_lee_hooker.relations.unwrap();
 
-    assert!(ninja_tune.rating.is_some());
+    assert!(relations.iter().any(|rel| rel.relation_type == "parent"));
+    assert!(relations
+        .iter()
+        .any(|rel| rel.relation_type == "main performer"));
 }
