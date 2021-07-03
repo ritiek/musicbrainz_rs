@@ -3,6 +3,7 @@ use std::marker::PhantomData;
 use crate::config::*;
 use crate::entity::area::Area;
 use crate::entity::artist::Artist;
+use crate::entity::disc::Disc;
 use crate::entity::event::Event;
 use crate::entity::instrument::*;
 use crate::entity::label::Label;
@@ -80,6 +81,7 @@ pub mod area;
 pub mod artist;
 pub mod artist_credit;
 pub mod coverart;
+pub mod disc;
 pub mod event;
 pub mod genre;
 pub mod instrument;
@@ -98,6 +100,7 @@ pub mod url;
 pub mod work;
 
 impl Fetch<'_> for Artist {}
+impl Fetch<'_> for Disc {}
 impl Fetch<'_> for Recording {}
 impl Fetch<'_> for ReleaseGroup {}
 impl Fetch<'_> for Release {}
@@ -129,6 +132,12 @@ impl Search<'_> for Artist {}
 impl Path<'_> for Artist {
     fn path() -> &'static str {
         "artist"
+    }
+}
+
+impl Path<'_> for Disc {
+    fn path() -> &'static str {
+        "discid"
     }
 }
 

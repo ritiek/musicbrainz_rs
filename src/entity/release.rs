@@ -3,7 +3,10 @@ use chrono::NaiveDate;
 use super::Include;
 use crate::date_format;
 use crate::entity::alias::Alias;
+use crate::entity::area::Area;
 use crate::entity::artist_credit::ArtistCredit;
+use crate::entity::coverart::CoverArtArchive;
+use crate::entity::disc::Disc;
 use crate::entity::genre::Genre;
 use crate::entity::label::LabelInfo;
 use crate::entity::recording::Recording;
@@ -74,6 +77,12 @@ pub struct Release {
     pub aliases: Option<Vec<Alias>>,
     pub genres: Option<Vec<Genre>>,
     pub annotation: Option<String>,
+    pub asin: Option<String>,
+    #[serde(rename = "cover-art-archive")]
+    pub cover_art_archive: Option<CoverArtArchive>,
+    #[serde(rename = "text-representation")]
+    pub text_representation: Option<ReleaseTextRepresentation>,
+    pub release_events: Option<Vec<ReleaseEvent>>,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -95,6 +104,7 @@ pub enum ReleaseScript {
 
 /* TODO: we need to test all posible values to build the enum see https://musicbrainz.org/doc/Release */
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all(deserialize = "lowercase"))]
 pub enum Language {
     Eng,
 }
@@ -144,6 +154,14 @@ pub enum ReleaseStatus {
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all(deserialize = "kebab-case"))]
+pub struct ReleaseEvent {
+    #[serde(deserialize_with = "date_format::deserialize_opt")]
+    date: Option<NaiveDate>,
+    area: Area,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[serde(rename_all(deserialize = "kebab-case"))]
 pub struct Media {
     pub title: String,
     pub position: u32,
@@ -152,6 +170,7 @@ pub struct Media {
     pub format_id: Option<String>,
     pub format: Option<String>,
     pub tracks: Option<Vec<Track>>,
+    pub discs: Option<Vec<Disc>>,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
