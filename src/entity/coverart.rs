@@ -90,3 +90,12 @@ pub enum ImageType {
     /// Anything which doesn't fit in the types defined above.
     Other,
 }
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+pub struct CoverArtArchive  {
+    artwork: bool,
+    count: u32,
+    darkened: bool,
+    front: bool,
+    back: bool,
+}

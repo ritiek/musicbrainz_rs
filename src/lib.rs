@@ -184,6 +184,7 @@ where
     {
         self.0.path.push_str(FMT_JSON);
         self.include_to_path();
+        println!("{}", &self.0.path);
         let request = HTTP_CLIENT.get(&self.0.path);
         HTTP_CLIENT.send_with_retries(request)?.json()
     }
